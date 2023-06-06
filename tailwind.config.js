@@ -34,7 +34,21 @@ module.exports = {
         500: '#D14747',
         200: '#E99696'
       }
-    }
+    },
+    fontFamily: {
+      title: 'Montserrat, sans-serif',
+      body: 'Be Vietnam, sans-serif'
+    },
+    fontSize: {
+      h1: '4rem',
+      h2: '3rem',
+      h3: '2rem',
+      h4: '1.5rem',
+      b1: '1.5rem',
+      b2: '1.25rem',
+      b3: '1rem',
+      b4: '0.75rem',
+    },
   },
   plugins: [],
 }
