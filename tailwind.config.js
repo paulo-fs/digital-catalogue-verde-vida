@@ -37,7 +37,8 @@ module.exports = {
     },
     fontFamily: {
       title: 'Montserrat, sans-serif',
-      body: 'Be Vietnam, sans-serif'
+      body: 'Be Vietnam Pro, sans-serif',
+      default: 'Be Vietnam Pro, sans-serif'
     },
     fontSize: {
       h1: '4rem',

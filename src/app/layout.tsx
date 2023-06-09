@@ -1,3 +1,4 @@
+import { Header } from '@/components'
 import './globals.css'
 import { Montserrat, Be_Vietnam_Pro } from 'next/font/google'
 
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt">
-      <body className={`${beVietnam.className} ${montserrat.className}`}>{children}</body>
+      <body className={`${beVietnam.className} ${montserrat.className}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
