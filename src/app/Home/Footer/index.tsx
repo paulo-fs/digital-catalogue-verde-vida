@@ -13,9 +13,9 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-4">
           <h3 className="font-title font-bold text-h4">Nosso catálogo</h3>
-          <CustomLink href='/' text='Categorias' />
+          <CustomLink href='/#categories' text='Categorias' />
           <CustomLink href='/' text='Minhas cestinha' />
-          <CustomLink href='/' text='Como funciona' />
+          <CustomLink href='/#how' text='Como funciona' />
         </div>
         <div className="flex flex-col gap-4">
           <h3 className="font-title font-bold text-h4">Área científica</h3>

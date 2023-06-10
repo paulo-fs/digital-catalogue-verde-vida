@@ -11,27 +11,27 @@ interface SessionCardProps extends HtmlHTMLAttributes<HTMLDivElement> {
 }
 
 export function SessionCard({ icon, title, content, ...props }: SessionCardProps) {
-   const iconSelect = {
-      'access': iconAccess,
-      'add': iconAdd,
-      'send': iconSend
-   }
+  const iconSelect = {
+    'access': iconAccess,
+    'add': iconAdd,
+    'send': iconSend
+  }
 
-   return (
-      <div
-         className="border-2 border-white hover:border-gray-200 transition rounded py-10 px-6 w-80 h-auto flex flex-col items-center gap-8"
-         {...props}
-      >
-         <Image src={iconSelect[icon]} alt='' />
+  return (
+    <div
+      className="border-2 border-white hover:border-gray-200 transition rounded py-10 px-6 w-80 h-auto flex flex-col items-center gap-8"
+      {...props}
+    >
+      <Image src={iconSelect[icon]} alt='' />
 
-         <div className='flex flex-col gap-4'>
-            <h3 className='font-title font-bold text-h3 leading-none'>
-               {title}
-            </h3>
-            <p className='text-gray-700'>
-               {content}
-            </p>
-         </div>
+      <div className='flex flex-col gap-4'>
+        <h3 className='font-title font-bold text-h3 leading-none'>
+          {title}
+        </h3>
+        <p className='text-gray-700'>
+          {content}
+        </p>
       </div>
-   )
+    </div>
+  )
 }
