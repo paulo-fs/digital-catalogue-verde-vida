@@ -12,7 +12,7 @@ export function HomeCategories() {
         </p>
       </div>
 
-      <div className="px-60 flex flex-wrap gap-4 justify-center">
+      <div className="inline-grid grid-cols-4 gap-8">
         <CategoryCard
           href="/"
           title="Emagrecimento"
