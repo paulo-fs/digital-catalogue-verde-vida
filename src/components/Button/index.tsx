@@ -3,15 +3,26 @@ import { ButtonHTMLAttributes } from 'react'
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    text: string
    variant?: 'primary' | 'secondary'
+   small?: boolean
 }
 
-const primary = 'px-12 py-4 bg-green-500 hover:bg-green-700 disabled:bg-gray-200 transition text-white font-bold font-body text-b2 rounded'
+export function Button({ text, small = false, variant = 'primary', ...props }: ButtonProps) {
+  const baseStyle = 'font-bold font-body rounded transition'
 
-const secondary = 'px-12 py-4 border-2 border-green-500 hover:bg-green-300 disabled:bg-gray-200 transition text-green-500 font-bold font-body text-b2 rounded'
+  const defaultSize = 'px-12 py-4 text-b2'
+  const smallSize = 'px-6 py-3 text-b3'
 
-export function Button({ text, variant = 'primary', ...props }: ButtonProps) {
+  const primary = 'bg-green-500 hover:bg-green-700 disabled:bg-gray-200 text-white'
+  const secondary = 'border-2 border-green-500 hover:bg-green-300 disabled:bg-gray-200 text-green-500'
+
   return (
-    <button {...props} className={variant === 'primary' ? primary : secondary}>
+    <button {...props}
+      className={`
+        ${baseStyle}
+        ${variant === 'primary' ? primary : secondary}
+        ${small ? smallSize : defaultSize}
+      `}
+    >
       {text}
     </button>
   )
