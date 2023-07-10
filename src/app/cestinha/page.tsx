@@ -20,7 +20,7 @@ export default function Cestinha() {
     <div className="mt-36 px-56 max-w-7xl mx-auto relative">
       <div className='flex gap-2 items-center absolute top-4 left-28'>
         <Image src={backIcon} alt='ícone de uma seta para a esquerda' />
-        <CustomLink href='/' text='Voltar' />
+        <CustomLink href='/produtos' text='Voltar' />
       </div>
 
       <h1 className='text-center font-title font-bold text-h3'>

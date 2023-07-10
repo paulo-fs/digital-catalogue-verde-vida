@@ -13,7 +13,7 @@ interface ProductCardProps {
   productData: IProduct
 }
 
-export function ProductCard({ linkUrl = '/products', productData }: ProductCardProps) {
+export function ProductCard({ linkUrl = '/produtos', productData }: ProductCardProps) {
   const { addItem } = basketStore()
 
   const data: IBasketItem = {
