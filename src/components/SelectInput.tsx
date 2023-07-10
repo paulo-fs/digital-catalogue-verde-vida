@@ -1,33 +1,65 @@
-import arrowDown from '../assets/svg/arrowDown.svg'
+'use client'
 import Image from 'next/image'
-import { InputHTMLAttributes } from 'react'
+import * as DropDown from '@radix-ui/react-dropdown-menu'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+import arrowDown from '../assets/svg/arrowDown.svg'
+
+interface InputProps {
   icon?: 'select' | null
 }
 
-export function SelectInput({ icon, ...props }: InputProps) {
+export function SelectInput({ icon }: InputProps) {
   const iconSelect = {
     'select': arrowDown
   }
 
   return(
     <label
-      className="h-14 w-full max-w-md px-8 rounded-full border-2 border-gray-200 flex items-center relative"
+      className="h-14 w-96 max-w-md px-2 rounded-full border-2 border-gray-200 flex items-center relative"
     >
-      <input
-        {...props}
-        className="outline-0 border-0 w-full"
-      />
+      <DropDown.Root>
+        <DropDown.Trigger asChild className='w-full'>
+          <button
+            className="h-full w-full px-6 flex items-center justify-between text-gray-700"
+          >
+            Selecione uma categoria
+            { icon && (
+              <Image src={iconSelect[icon]} alt='ícone de uma seta para baixo'
+                className=''
+              />
+            )}
+          </button>
+        </DropDown.Trigger>
 
-      <button
-        type='submit'
-        className="absolute right-0 h-full bg-white hover:bg-green-300 transition rounded-r-full grid place-content-center px-6"
-      >
-        { icon && (
-          <Image src={iconSelect[icon]} alt='ícone de uma seta para baixo' />
-        )}
-      </button>
+        <DropDown.Portal>
+          <DropDown.Content
+            align='center'
+            sideOffset={5}
+            className='bg-white max-w-md w-80 rounded-md border-2 border-gray-200 shadow-lg shadow-gray-100'
+          >
+
+            <DropDown.Group className='flex flex-col'>
+              <DropDown.Item
+                className='p-4 hover:bg-green-300 cursor-pointer'
+              >
+                Beleza
+              </DropDown.Item>
+              <DropDown.Item
+                className='p-4 hover:bg-green-300 cursor-pointer'
+              >
+                Saúde
+              </DropDown.Item>
+              <DropDown.Item
+                className='p-4 hover:bg-green-300 cursor-pointer'
+              >
+                Imunidade
+              </DropDown.Item>
+            </DropDown.Group>
+          </DropDown.Content>
+        </DropDown.Portal>
+
+      </DropDown.Root>
+
     </label>
   )
 }

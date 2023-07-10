@@ -21,8 +21,6 @@ export function TogleInputs() {
       {activeInput === SelectedInput.SELECT && (
         <SelectInput
           icon='select'
-          type='search'
-          placeholder='Selecione uma cagegoria'
         />
       )}
       <ButtonIcon
