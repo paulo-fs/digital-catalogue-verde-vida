@@ -49,7 +49,6 @@ export const basketStore = create<BasketProps>((set, get) => ({
 
   increaseAmount: (id) => {
     const { basketContent, setTotal } = get()
-    console.log('increase', id)
 
     set({
       basketContent: basketContent?.map((item) => {
@@ -64,7 +63,6 @@ export const basketStore = create<BasketProps>((set, get) => ({
 
   decreaseAmount: (id) => {
     const { basketContent, setTotal } = get()
-    console.log('decrease', id)
 
     set({
       basketContent: basketContent?.map((item) => {
