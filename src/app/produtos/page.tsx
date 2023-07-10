@@ -1,4 +1,5 @@
 import { ButtonIcon, ProductCard, SearchInput } from '@/components'
+import { fakeProductList } from '@/store/fakeData'
 
 export default function Products() {
   return (
@@ -14,12 +15,16 @@ export default function Products() {
       </div>
 
       <div className='mt-14 inline-grid grid-cols-4 gap-8'>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {
+          fakeProductList && fakeProductList.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                productData={product}
+              />
+            )
+          })
+        }
       </div>
     </div>
   )
