@@ -1,26 +1,6 @@
 import { create } from 'zustand'
 import { IBasketItem } from '@/dataTypes/basket.dto'
-
-const dummyProductList = [
-  {
-    id: '1',
-    name: 'vital drops 1',
-    price: 20,
-    amount: 1
-  },
-  {
-    id: '2',
-    name: 'vital drops 2',
-    price: 20.5,
-    amount: 1
-  },
-  {
-    id: '3',
-    name: 'vital drops 3',
-    price: 10,
-    amount: 1
-  },
-]
+import { fakeProductsOnBasket } from './fakeData'
 
 interface BasketProps {
   basketContent: IBasketItem[] | null
@@ -29,11 +9,13 @@ interface BasketProps {
   setTotal: () => void
   increaseAmount: (id: string) => void
   decreaseAmount: (id: string) => void
+
   removeItem: (id: string) => void
+  addItem: (data: IBasketItem) => void
 }
 
 const initialState = {
-  basketContent: dummyProductList,
+  basketContent: fakeProductsOnBasket,
   basketTotal: 0
 }
 
@@ -81,6 +63,20 @@ export const basketStore = create<BasketProps>((set, get) => ({
     const { basketContent, setTotal } = get()
     set({
       basketContent: basketContent?.filter(item => item.id !== id)
+    })
+    setTotal()
+  },
+
+  addItem: (data) => {
+    const { basketContent, increaseAmount, setTotal } = get()
+
+    if (!basketContent) return set({ basketContent: [data] })
+
+    const existsInStore = basketContent?.find(item => item.id === data.id)
+    if (existsInStore) return increaseAmount(existsInStore.id)
+
+    set({
+      basketContent: [...basketContent, data]
     })
     setTotal()
   }
