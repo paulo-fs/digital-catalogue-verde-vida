@@ -1,27 +1,37 @@
+'use cliente'
 import Image from 'next/image'
 import trash from '../../../assets/svg/trash.svg'
 import { RoundedButton } from './RoundedButton'
+import { formatPrice } from '@/helpers/formatPrice'
+import { IBasketItem } from '@/dataTypes/basket.dto'
 
-export function AddedProduct() {
+interface AddedProductProps {
+  productData: IBasketItem
+  increaseAmount: (id: string) => void
+  decreaseAmount: (id: string) => void
+}
+
+export function AddedProduct({productData, increaseAmount, decreaseAmount}: AddedProductProps) {
+
   return (
     <div
       className="w-full h-fit flex items-center justify-between gap-6 text-gray-800"
     >
       <div className="w-full h-full bg-gray-100 rounded px-8 py-6 flex items-center justify-between">
-        <span className='text-b2'>
-          Vital Drops VC-IP
+        <span className='text-b2 capitalize'>
+          {productData.name}
         </span>
 
         <div className='flex items-center gap-6'>
           <span>
-            R$40,00
+            R${formatPrice(productData.price)}
           </span>
           <span className='text-gray-700'>x</span>
           <div className='flex items-center gap-3'>
-            <span>3</span>
+            <span>{productData.amount}</span>
             <div className='flex flex-col gap-1'>
-              <RoundedButton text='+' />
-              <RoundedButton text='-' />
+              <RoundedButton text='+' onClick={() => increaseAmount(productData.id)} />
+              <RoundedButton text='-' onClick={() => decreaseAmount(productData.id)} />
             </div>
           </div>
         </div>
