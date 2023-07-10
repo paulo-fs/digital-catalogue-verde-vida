@@ -29,6 +29,7 @@ interface BasketProps {
   setTotal: () => void
   increaseAmount: (id: string) => void
   decreaseAmount: (id: string) => void
+  removeItem: (id: string) => void
 }
 
 const initialState = {
@@ -75,4 +76,12 @@ export const basketStore = create<BasketProps>((set, get) => ({
     })
     setTotal()
   },
+
+  removeItem: (id) => {
+    const { basketContent, setTotal } = get()
+    set({
+      basketContent: basketContent?.filter(item => item.id !== id)
+    })
+    setTotal()
+  }
 }))

@@ -10,7 +10,7 @@ import { basketStore } from '@/store/basket.store'
 import backIcon from '../../assets/svg/back-green.svg'
 
 export default function Cestinha() {
-  const { basketContent, basketTotal, setTotal, increaseAmount, decreaseAmount } = basketStore()
+  const { basketContent, basketTotal, setTotal, increaseAmount, decreaseAmount, removeItem } = basketStore()
 
   useEffect(() => {
     setTotal()
@@ -35,6 +35,7 @@ export default function Cestinha() {
               productData={product}
               increaseAmount={increaseAmount}
               decreaseAmount={decreaseAmount}
+              removeItem={removeItem}
             />
           )
         })}

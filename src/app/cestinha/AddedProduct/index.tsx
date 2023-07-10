@@ -9,9 +9,10 @@ interface AddedProductProps {
   productData: IBasketItem
   increaseAmount: (id: string) => void
   decreaseAmount: (id: string) => void
+  removeItem: (id: string) => void
 }
 
-export function AddedProduct({productData, increaseAmount, decreaseAmount}: AddedProductProps) {
+export function AddedProduct({productData, increaseAmount, decreaseAmount, removeItem}: AddedProductProps) {
 
   return (
     <div
@@ -37,7 +38,10 @@ export function AddedProduct({productData, increaseAmount, decreaseAmount}: Adde
         </div>
       </div>
 
-      <button className='grid place-content-center p-4 hover:bg-gray-100 transition rounded-full'>
+      <button
+        className='grid place-content-center p-4 hover:bg-gray-100 transition rounded-full'
+        onClick={() => removeItem(productData.id)}
+      >
         <Image src={trash} alt='ícone de uma lata de lixo' />
       </button>
     </div>
