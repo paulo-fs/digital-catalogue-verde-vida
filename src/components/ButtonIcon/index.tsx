@@ -20,8 +20,8 @@ export function ButtonIcon({ icon = 'busca', isActive = false, ...props }: Butto
       {...props}
       type='button'
       className={`
-        rounded-full hover:bg-green-300 transition p-4
-        ${isActive ? 'bg-green-300' : 'bg-green-500'}
+        rounded-full hover:bg-green-500 transition p-4
+        ${isActive ? 'bg-green-500' : 'bg-green-300'}
       `}
     >
       <Image src={iconSelect[icon]} alt={`botão com um ícone de ${icon}`} />

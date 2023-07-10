@@ -1,14 +1,14 @@
-import iconSearch from '../../assets/svg/Search.svg'
+import arrowDown from '../assets/svg/arrowDown.svg'
 import Image from 'next/image'
 import { InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  icon?: 'search' | null
+  icon?: 'select' | null
 }
 
-export function SearchInput({ icon, ...props }: InputProps) {
+export function SelectInput({ icon, ...props }: InputProps) {
   const iconSelect = {
-    'search': iconSearch
+    'select': arrowDown
   }
 
   return(
@@ -22,10 +22,10 @@ export function SearchInput({ icon, ...props }: InputProps) {
 
       <button
         type='submit'
-        className="absolute right-0 h-full bg-green-500 hover:bg-green-700 transition rounded-r-full grid place-content-center px-6"
+        className="absolute right-0 h-full bg-white hover:bg-green-300 transition rounded-r-full grid place-content-center px-6"
       >
         { icon && (
-          <Image src={iconSelect[icon]} alt='ícone de pesquisa ou de menu' />
+          <Image src={iconSelect[icon]} alt='ícone de uma seta para baixo' />
         )}
       </button>
     </label>

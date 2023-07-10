@@ -9,6 +9,8 @@ export * from './ButtonIcon'
 
 // inputs
 export * from './SearchInput'
+export * from './SelectInput'
+export * from './TogleInputs'
 
 // product
 export * from './ProductCard'
