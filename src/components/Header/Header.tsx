@@ -11,7 +11,7 @@ export function Header() {
       <Image src={logo} alt='logo Verde Vida' />
 
       <nav className='flex gap-5'>
-        <CustomLink text='Minha Cestinha' href='/' />
+        <CustomLink text='Minha Cestinha' href='/cestinha' />
       </nav>
 
       <HeaderBasket />
