@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import * as DropDown from '@radix-ui/react-dropdown-menu'
 
-import arrowDown from '../assets/svg/arrowDown.svg'
+import arrowDown from '@/../public/assets/svg/arrowDown.svg'
 
 interface InputProps {
   icon?: 'select' | null

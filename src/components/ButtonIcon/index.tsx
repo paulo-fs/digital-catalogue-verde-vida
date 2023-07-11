@@ -1,6 +1,6 @@
 'use client'
-import iconSearch from '../../assets/svg/Search.svg'
-import iconCategory from '../../assets/svg/Menu-left.svg'
+import iconSearch from '@/../public/assets/svg/Search.svg'
+import iconCategory from '@/../public/assets/svg/Menu-left.svg'
 import Image from 'next/image'
 import { ButtonHTMLAttributes } from 'react'
 

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import folha from '../../../assets/images/folha 1.png'
+import folha from '@/../public/assets/images/folha 1.png'
 import { Button } from '@/components'
 
 export function Hero() {

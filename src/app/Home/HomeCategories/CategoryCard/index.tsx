@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Link, { LinkProps } from 'next/link'
-import iconEmagrecimento from '../../../../assets/svg/emagrecimento.svg'
-import iconSaude from '../../../../assets/svg/healthy.svg'
-import iconEnergia from '../../../../assets/svg/foco-concentracao.svg'
-import iconBeleza from '../../../../assets/svg/beauty.svg'
-import iconNutrientes from '../../../../assets/svg/nutrientes-essenciais.svg'
-import iconImunidade from '../../../../assets/svg/imunidade.svg'
-import iconExercicio from '../../../../assets/svg/workout.svg'
-import iconSono from '../../../../assets/svg/sono.svg'
+import iconEmagrecimento from '@/../public/assets/svg/emagrecimento.svg'
+import iconSaude from '@/../public/assets/svg/healthy.svg'
+import iconEnergia from '@/../public/assets/svg/foco-concentracao.svg'
+import iconBeleza from '@/../public/assets/svg/beauty.svg'
+import iconNutrientes from '@/../public/assets/svg/nutrientes-essenciais.svg'
+import iconImunidade from '@/../public/assets/svg/imunidade.svg'
+import iconExercicio from '@/../public/assets/svg/workout.svg'
+import iconSono from '@/../public/assets/svg/sono.svg'
 
 const iconSelect = {
   'emagrecimento': iconEmagrecimento,

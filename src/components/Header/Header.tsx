@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import logo from '../../assets/svg/logo-semiV-color.svg'
+import logo from '@/../public/assets/svg/logo-semiV-color.svg'
 import { CustomLink } from '../CustomLink'
 import { HeaderBasket } from '../HeaderBasket'
 

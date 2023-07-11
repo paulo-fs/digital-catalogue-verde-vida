@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '../Button'
-import product from '../../assets/images/product-photo.png'
+import product from '@/../public/assets/images/product-photo.png'
 import { IProduct } from '@/dataTypes/product.dto'
 import { formatPrice } from '@/helpers/formatPrice'
 import { basketStore } from '@/store/basket.store'

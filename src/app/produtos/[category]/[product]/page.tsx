@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Button, CustomLink } from '@/components'
-import backIcon from '../../../../assets/svg/back-green.svg'
-import productPhoto from '../../../../assets/images/product-photo.png'
+import backIcon from '/assets/svg/back-green.svg'
+import productPhoto from '/assets/images/product-photo.png'
 
 interface ProductPageProps {
   params: {

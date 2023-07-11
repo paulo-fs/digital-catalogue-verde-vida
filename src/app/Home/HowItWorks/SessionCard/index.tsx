@@ -1,6 +1,6 @@
-import iconAccess from '../../../../assets/svg/hand.svg'
-import iconAdd from '../../../../assets/svg/Bag.svg'
-import iconSend from '../../../../assets/svg/whats.svg'
+import iconAccess from '@/../public/assets/svg/hand.svg'
+import iconAdd from '@/../public/assets/svg/Bag.svg'
+import iconSend from '@/../public/assets/svg/whats.svg'
 import Image from 'next/image'
 import { HtmlHTMLAttributes } from 'react'
 

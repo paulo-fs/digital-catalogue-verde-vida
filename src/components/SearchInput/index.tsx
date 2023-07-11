@@ -1,6 +1,6 @@
-import iconSearch from '../../assets/svg/Search.svg'
 import Image from 'next/image'
 import { InputHTMLAttributes } from 'react'
+import iconSearch from '@/../public/assets/svg/Search.svg'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: 'search' | null

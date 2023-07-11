@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import smallBagIcon from '../../assets/svg/smallBagIcon.svg'
+import smallBagIcon from '@/../public/assets/svg/smallBagIcon.svg'
 import { basketStore } from '@/store/basket.store'
 import { formatPrice } from '@/helpers/formatPrice'
 import { useEffect } from 'react'
