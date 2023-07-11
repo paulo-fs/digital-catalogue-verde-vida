@@ -1,6 +1,4 @@
-import { Hero } from './Hero'
-import { HomeCategories } from './HomeCategories'
-import { HowItWorks } from './HowItWorks'
+import { Hero, HomeCategories, HowItWorks } from '@/components'
 
 export default function Home() {
   return (

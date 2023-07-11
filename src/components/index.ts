@@ -14,3 +14,9 @@ export * from './TogleInputs'
 
 // product
 export * from './ProductCard'
+
+// sessions
+export * from './sessions/Hero'
+export * from './sessions/HomeCategories'
+export * from './sessions/HowItWorks'
+export * from './sessions/Footer'

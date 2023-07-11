@@ -1,7 +1,7 @@
-import { Header } from '@/components'
-import './globals.css'
 import { Montserrat, Be_Vietnam_Pro } from 'next/font/google'
-import { Footer } from './Home/Footer'
+import { Footer, Header } from '@/components'
+import './globals.css'
+
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 const beVietnam = Be_Vietnam_Pro({ subsets: ['latin'], weight: ['400', '700'] })
