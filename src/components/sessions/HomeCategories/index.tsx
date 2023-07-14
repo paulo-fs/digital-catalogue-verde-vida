@@ -1,12 +1,9 @@
 import { ICategory } from '@/dataTypes/category.dto'
 import { CategoryCard } from './CategoryCard'
+import { getAllCategories } from '@/services/requests'
 
 export async function HomeCategories() {
-  const requestData = await fetch('http://localhost:3000/api/category')
-    .then(response => response.json())
-    .catch(error => console.log(error))
-
-  const { categories } = requestData
+  const { categories } = await getAllCategories()
 
   return (
     <section id='categories' className="text-center">
