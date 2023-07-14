@@ -1,10 +1,5 @@
+import { ICategory } from '@/dataTypes/category.dto'
 import { model, models, Schema } from 'mongoose'
-
-export interface ICategory {
-  name: string
-  icon: string
-  slug: string
-}
 
 const CategorySchema = new Schema<ICategory>({
   name: {

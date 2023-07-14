@@ -8,7 +8,7 @@ database.connect()
 export async function GET() {
   try {
     const categories = await Category.find()
-    return NextResponse.json(categories)
+    return NextResponse.json({categories})
   } catch (err) {
     return NextResponse.json({message: 'error'})
   }
