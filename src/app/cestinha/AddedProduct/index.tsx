@@ -1,6 +1,6 @@
 'use cliente'
 import Image from 'next/image'
-import trash from '../../../assets/svg/trash.svg'
+import trash from 'public/assets/svg/trash.svg'
 import { RoundedButton } from './RoundedButton'
 import { formatPrice } from '@/helpers/formatPrice'
 import { IBasketItem } from '@/dataTypes/basket.dto'

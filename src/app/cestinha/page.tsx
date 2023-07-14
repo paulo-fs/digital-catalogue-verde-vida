@@ -7,7 +7,7 @@ import { AddedProduct } from './AddedProduct'
 import { formatPrice } from '@/helpers/formatPrice'
 import { basketStore } from '@/store/basket.store'
 
-import backIcon from '../../assets/svg/back-green.svg'
+import backIcon from 'public/assets/svg/back-green.svg'
 
 export default function Cestinha() {
   const { basketContent, basketTotal, setTotal, increaseAmount, decreaseAmount, removeItem } = basketStore()
