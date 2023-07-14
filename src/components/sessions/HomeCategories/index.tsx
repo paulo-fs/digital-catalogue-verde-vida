@@ -1,6 +1,13 @@
+import { ICategory } from '@/dataTypes/category.dto'
 import { CategoryCard } from './CategoryCard'
 
-export function HomeCategories() {
+export async function HomeCategories() {
+  const requestData = await fetch('http://localhost:3000/api/category')
+    .then(response => response.json())
+    .catch(error => console.log(error))
+
+  const { categories } = requestData
+
   return (
     <section id='categories' className="text-center">
       <div>
@@ -13,46 +20,16 @@ export function HomeCategories() {
       </div>
 
       <div className="inline-grid grid-cols-4 gap-8">
-        <CategoryCard
-          href="/"
-          title="Emagrecimento"
-          icon="emagrecimento"
-        />
-        <CategoryCard
-          href='/'
-          title="Saúde Geral"
-          icon="saude"
-        />
-        <CategoryCard
-          href='/'
-          title='Energia, Foco e Concentração'
-          icon="energia"
-        />
-        <CategoryCard
-          href='/'
-          title='Pele e Beleza'
-          icon="beleza"
-        />
-        <CategoryCard
-          href='/'
-          title='Nutrientes Essenciais'
-          icon="nutrientes"
-        />
-        <CategoryCard
-          href='/'
-          title='Imunidade'
-          icon="imunidade"
-        />
-        <CategoryCard
-          href='/'
-          title='Exercícios físicos'
-          icon="exercicio"
-        />
-        <CategoryCard
-          href='/'
-          title='Sono'
-          icon="sono"
-        />
+        {categories && categories.map((category: ICategory) => {
+          return (
+            <CategoryCard
+              key={category._id}
+              href={`/category/${category.slug}`}
+              title={category.name}
+              icon={category.icon}
+            />
+          )
+        })}
       </div>
     </section>
   )
