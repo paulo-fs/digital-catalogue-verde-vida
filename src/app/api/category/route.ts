@@ -5,12 +5,6 @@ import { NextResponse, NextRequest } from 'next/server'
 
 database.connect()
 
-export const config = {
-  api: {
-    bodyParser: false,
-  }
-}
-
 export async function GET() {
   try {
     const categories = await Category.find()

@@ -5,12 +5,6 @@ import { NextResponse, NextRequest } from 'next/server'
 
 database.connect()
 
-export const config = {
-  api: {
-    bodyParser: false,
-  }
-}
-
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const body = await req.json()
   const { id } = params
