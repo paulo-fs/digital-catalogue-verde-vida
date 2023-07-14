@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import folha from '@/../public/assets/images/folha 1.png'
 import { Button } from '@/components'
+import Link from 'next/link'
 
 export function Hero() {
   return (
@@ -13,7 +14,9 @@ export function Hero() {
                Fórmulas cuidadosamente planejadas para atender as suas necessidades.
         </p>
         <div>
-          <Button text='Ver catálogo' />
+          <Link href='/produtos'>
+            <Button text='Ver catálogo' />
+          </Link>
         </div>
       </div>
 
