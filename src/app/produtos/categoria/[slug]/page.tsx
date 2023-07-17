@@ -2,8 +2,16 @@ import { ProductCard, TogleInputs } from '@/components'
 import { getAllCategories } from '@/services/requests'
 import { fakeProductList } from '@/store/fakeData'
 
-export default async function Products() {
+interface CategoryPageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function CategoryProducts({ params }: CategoryPageProps) {
+  const { slug } = params
   const { categories } = await getAllCategories()
+
   return (
     <div className="mt-36 px-28 text-center">
       <TogleInputs
