@@ -4,8 +4,13 @@ import { ButtonIcon } from './ButtonIcon'
 import { SelectInput } from './SelectInput'
 import { SelectedInput } from '@/dataTypes/searchSelect.dto'
 import { SearchInput } from './SearchInput'
+import { ICategory } from '@/dataTypes/category.dto'
 
-export function TogleInputs() {
+interface TogleInputProps {
+  categories: ICategory[]
+}
+
+export function TogleInputs({ categories }: TogleInputProps) {
   const {activeInput, changeActiveInput} = togleSearchSelectInputsStore()
 
   return (
@@ -21,6 +26,7 @@ export function TogleInputs() {
       {activeInput === SelectedInput.SELECT && (
         <SelectInput
           icon='select'
+          categories={categories}
         />
       )}
       <ButtonIcon
