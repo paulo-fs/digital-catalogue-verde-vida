@@ -21,7 +21,7 @@ export async function HomeCategories() {
           return (
             <CategoryCard
               key={category._id}
-              href={`/category/${category.slug}`}
+              href={`/produtos/categoria/${category.slug}`}
               title={category.name}
               icon={category.icon}
             />
