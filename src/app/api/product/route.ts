@@ -4,6 +4,7 @@ import { NextResponse, NextRequest } from 'next/server'
 import mime from 'mime'
 import { join } from 'path'
 import { stat, mkdir, writeFile } from 'fs/promises'
+import { Slug } from '@/helper/slugNormalizer'
 
 database.connect()
 
@@ -30,6 +31,8 @@ export async function POST(req: NextRequest) {
   if(!image || !name || !price || !category) {
     return NextResponse.json({ error: 'Name, price, category and image as required' }, { status: 400 })
   }
+
+  const productSlug = Slug.createFromText(name).value
 
   if (acceptedTypes.indexOf(image.type) === -1) {
     return NextResponse.json({ error: 'The image need to be jpg, jpeg or png.'}, {status: 400})
@@ -70,6 +73,7 @@ export async function POST(req: NextRequest) {
 
     const newProduct = await productModel.create({
       name: name,
+      slug: productSlug,
       price: price,
       image: fileUrl,
       category: category,

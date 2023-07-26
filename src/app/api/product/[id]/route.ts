@@ -1,7 +1,7 @@
 import database from '@/lib/database'
-import mongoose from 'mongoose'
+import { categoryModel } from '@/models/category'
+import { productModel } from '@/models/product'
 import { NextResponse, NextRequest } from 'next/server'
-import { z } from 'zod'
 
 database.connect()
 
@@ -9,7 +9,7 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   const { id } = params
 
   try {
-    const product = await mongoose.model('Product').findById(id).populate('category').exec()
+    const product = await productModel.findById(id).populate('category').exec()
     return NextResponse.json({ product })
   } catch (err) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 })
@@ -38,7 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
   if (category) {
     try {
-      const found = await mongoose.model('Category').findById(category)
+      const found = await categoryModel.findById(category)
       if (!found) return NextResponse.json({ error: 'Category not found'}, { status: 404 })
     } catch (err) {
       console.log(err)
@@ -60,10 +60,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
 
   try {
-    const product = await mongoose.model('Product').findById(id)
+    const product = await productModel.findById(id)
     if (!product) return NextResponse.json({ error: 'Product not found' }, { status: 404 })
 
-    const updatedProduct = await mongoose.model('Product').findByIdAndUpdate(id, cleanUpdateData, {
+    const updatedProduct = await productModel.findByIdAndUpdate(id, cleanUpdateData, {
       new: true,
       runValidators: true
     })
@@ -79,7 +79,7 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
   const { id } = params
 
   try {
-    await mongoose.model('Product').findByIdAndDelete(id)
+    await productModel.findByIdAndDelete(id)
     return NextResponse.json({ message: 'Product deleted successfully' })
   } catch (err) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 })
