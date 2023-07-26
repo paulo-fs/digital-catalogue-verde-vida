@@ -1,12 +1,15 @@
 import database from '@/lib/database'
-import mongoose from 'mongoose'
+import {productModel} from '@/models/product'
 import { NextResponse, NextRequest } from 'next/server'
+import mime from 'mime'
+import { join } from 'path'
+import { stat, mkdir, writeFile } from 'fs/promises'
 
 database.connect()
 
 export async function GET() {
   try {
-    const products = await mongoose.model('Product').find().populate('category').exec()
+    const products = await productModel.find().populate('category').exec()
     return NextResponse.json({products})
   } catch (err) {
     console.log(err)
@@ -17,7 +20,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const formData = await req.formData()
   const acceptedTypes = ['image/jpg', 'image/jpeg', 'image/png']
-  const maxSize = 5 * 1024 * 1024
+  const maxSize = 3 * 1024 * 1024 // 3mb
 
   const name = formData.get('name') as string | null
   const price = formData.get('price') as number | null
@@ -37,22 +40,38 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const found = await mongoose.model('Product').find({ name: name })
+    const found = await productModel.find({ name: name })
     if (found.length !== 0) return NextResponse.json({ error: 'Product already exists' }, { status: 400 })
   } catch (err) {
     console.log(err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 
-  try {
-    const buffer = Buffer.from(await image.arrayBuffer())
-    const base64 = buffer.toString('base64url')
+  const buffer = Buffer.from(await image.arrayBuffer())
+  const relativeUploadDir = '/uploads/products'
+  const uploadDir = join(process.cwd(), 'public', relativeUploadDir)
 
-    const newProduct = await mongoose.model('Product').create({
+  try {
+    await stat(uploadDir)
+  } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      await mkdir(uploadDir, { recursive: true })
+    } else {
+      console.error('Error white trying to create directory when uploading a file\n', err)
+      return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
+    }
+  }
+
+  try {
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`
+    const filename = `${image.name.replace(/\.[^/.]+$/, '')}-${uniqueSuffix}.${mime.getExtension(image.type)}`
+    await writeFile(`${uploadDir}/${filename}`, buffer)
+    const fileUrl = `${relativeUploadDir}/${filename}`
+
+    const newProduct = await productModel.create({
       name: name,
       price: price,
-      image: base64,
-      imageType: image.type,
+      image: fileUrl,
       category: category,
     })
     return NextResponse.json({ product: newProduct })
