@@ -8,7 +8,7 @@ export async function GET(_req: NextRequest, { params }: { params: { slug: strin
   const { slug } = params
 
   try {
-    const product = await mongoose.model('Product').find({slug: slug}).populate('category').exec()
+    const product = await mongoose.model('Product').findOne({slug: slug}).populate('category').exec()
     return NextResponse.json({ product })
   } catch (err) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 })
