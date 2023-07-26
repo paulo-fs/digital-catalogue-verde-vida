@@ -1,5 +1,5 @@
 import { ICategory } from '@/dataTypes/category.dto'
-import { model, Schema } from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
 const CategorySchema = new Schema<ICategory>({
   name: {
@@ -18,5 +18,6 @@ const CategorySchema = new Schema<ICategory>({
   }
 })
 
-const CategoryModal = model('Category', CategorySchema)
-export default CategoryModal
+const CategoryModel = () => mongoose.model<ICategory>('Category', CategorySchema)
+
+export const categoryModel = (mongoose.models.Category || CategoryModel()) as ReturnType<typeof CategoryModel>

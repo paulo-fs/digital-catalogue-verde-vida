@@ -1,8 +1,10 @@
+import { Schema } from 'mongoose'
+
 export interface IProduct {
-  id: string
+  _id: string
   name: string
-  category: string
   price: number
-  available: boolean
   image: string
+  category: Schema.Types.ObjectId
+  available: boolean
 }

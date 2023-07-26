@@ -1,8 +1,8 @@
 import { IProduct } from '@/dataTypes/product.dto'
-import { model, Schema } from 'mongoose'
-import CategoryModal from './category'
+import mongoose, { Schema } from 'mongoose'
+import { categoryModel } from './category'
 
-const ProductSchema = new Schema({
+const ProductSchema = new Schema<IProduct>({
   name: {
     type: String,
     required: true,
@@ -10,11 +10,7 @@ const ProductSchema = new Schema({
   },
   image: {
     type: String,
-    required: true
-  },
-  imageType: {
-    type: String,
-    require: true
+    required: true,
   },
   price: {
     type: Number,
@@ -31,7 +27,8 @@ const ProductSchema = new Schema({
   }
 })
 
-CategoryModal
+categoryModel
 
-const ProductModel = model<IProduct>('Product', ProductSchema)
-export default ProductModel
+const ProductModel = () => mongoose.model<IProduct>('Product', ProductSchema)
+
+export const productModel = (mongoose.models.Product || ProductModel()) as ReturnType<typeof ProductModel>
