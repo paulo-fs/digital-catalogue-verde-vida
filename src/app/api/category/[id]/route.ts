@@ -1,6 +1,6 @@
 import { Slug } from '@/helper/slugNormalizer'
 import database from '@/lib/database'
-import mongoose from 'mongoose'
+import { categoryModel } from '@/models/category'
 import { NextResponse, NextRequest } from 'next/server'
 import { z } from 'zod'
 
@@ -22,7 +22,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 
   try {
-    const category = await mongoose.model('Category').findById(id)
+    const category = await categoryModel.findById(id)
     const newSlug = body.name ? Slug.createFromText(body.name).value : null
 
     if (!category) return NextResponse.json({ error: 'Category not found' }, { status: 404 })
@@ -31,7 +31,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     category.icon = body.icon || category.icon
     category.slug = newSlug || (category.slug)
 
-    const updatedCategory = await mongoose.model('Category').findByIdAndUpdate(id, category, {
+    const updatedCategory = await categoryModel.findByIdAndUpdate(id, category, {
       new: true,
       runValidators: true
     })
@@ -46,7 +46,7 @@ export async function DELETE(_req: Request, { params }: { params: { id: string }
   const { id } = params
 
   try {
-    await mongoose.model('Category').findByIdAndDelete(id)
+    await categoryModel.findByIdAndDelete(id)
     return NextResponse.json({ message: 'Category deleted successfully' })
   } catch (err) {
     console.log(err)
@@ -58,7 +58,7 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
   const { id } = params
 
   try {
-    const category = await mongoose.model('Category').findById(id)
+    const category = await categoryModel.findById(id)
     return NextResponse.json({category})
   } catch (err) {
     console.log(err)
