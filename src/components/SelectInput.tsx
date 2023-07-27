@@ -24,7 +24,7 @@ export function SelectInput({ icon, categories }: InputProps) {
   function handleSelectCategory(category: string, slug: string | null) {
     setSelectedCategory(category)
     if (!slug) return router.push('/produtos')
-    router.push(`/produtos/categoria/${slug}`)
+    router.push(`/produtos/${slug}`)
   }
 
   return(

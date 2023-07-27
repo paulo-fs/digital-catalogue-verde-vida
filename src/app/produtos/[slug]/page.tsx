@@ -1,8 +1,15 @@
 import { ProductCard } from '@/components'
-import { getAllProducts } from '@/services/requests'
+import { getProductsByCategory } from '@/services/requests'
 
-export default async function Products() {
-  const { products } = await getAllProducts()
+interface CategoryPageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function CategoryProducts({ params }: CategoryPageProps) {
+  const { slug } = params
+  const { products } = await getProductsByCategory(slug)
 
   return (
     <>
