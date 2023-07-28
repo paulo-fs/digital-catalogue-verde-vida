@@ -5,11 +5,12 @@ interface CategoryPageProps {
   params: {
     slug: string
   }
+  searchParams?: { [key: string]: string | undefined }
 }
 
-export default async function CategoryProducts({ params }: CategoryPageProps) {
+export default async function CategoryProducts({ params, searchParams }: CategoryPageProps) {
   const { slug } = params
-  const { products } = await getProductsByCategory(slug)
+  const { products } = await getProductsByCategory(slug, searchParams?.name)
 
   return (
     <>

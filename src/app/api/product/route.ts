@@ -5,12 +5,17 @@ import mime from 'mime'
 import { join } from 'path'
 import { stat, mkdir, writeFile } from 'fs/promises'
 import { Slug } from '@/helper/slugNormalizer'
+import url from 'url'
 
 database.connect()
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const queryParams = url.parse(req.url, true).query
+  const { name } = queryParams
+
   try {
-    const products = await productModel.find().populate('category').exec()
+    let products = await productModel.find({}).populate('category').exec()
+    if (name) products = products.filter((product: any) => product.name.toLowerCase().includes(name))
     return NextResponse.json({products})
   } catch (err) {
     console.log(err)

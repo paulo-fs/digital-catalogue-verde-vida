@@ -1,16 +1,18 @@
 import Image from 'next/image'
 import { Button, CustomLink } from '@/components'
 import backIcon from 'public/assets/svg/back-green.svg'
-import productPhoto from 'public/assets/images/product-photo.png'
+import { getProductBySlug } from '@/services/requests'
+import { formatPrice } from '@/helpers/formatPrice'
 
 interface ProductPageProps {
   params: {
-    product: string
+    slug: string
   }
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const { product } = params
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params
+  const {product} = await getProductBySlug(slug)
 
   return (
     <div className="mt-36 px-28 max-w-7xl mx-auto">
@@ -22,8 +24,8 @@ export default function ProductPage({ params }: ProductPageProps) {
       <main className='mt-8 flex justify-between gap-24'>
         <div className='max-w-2xl flex flex-col gap-6 flex-1'>
           <div>
-            <h1 className='font-title font-bold text-h2'>
-            Vital Drops VC-IP
+            <h1 className='font-title font-bold text-h2 capitalize'>
+              {product.name}
             </h1>
             <p className='text-b3 text-green-500'>Linha NOME DA LINHA DO PRODUTO</p>
           </div>
@@ -41,7 +43,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </p>
 
           <span className='font-title text-b1 text-green-500'>
-          R$39,90
+          R${formatPrice(product.price)}
           </span>
 
           <div>
@@ -49,9 +51,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
 
-        <Image src={productPhoto} alt='foto de um produto'
-          className='h-fit max-w-md flex-1'
-        />
+        <Image className='h-fit max-w-md flex-1' src={product.image} width={1000} height={1000} alt={`foto do produto ${product.name}`} />
       </main>
     </div>
   )

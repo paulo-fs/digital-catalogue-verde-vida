@@ -1,8 +1,12 @@
 import { ProductCard } from '@/components'
 import { getAllProducts } from '@/services/requests'
 
-export default async function Products() {
-  const { products } = await getAllProducts()
+interface ProductsProps {
+  searchParams?: { [key: string]: string | undefined }
+}
+
+export default async function Products({searchParams}: ProductsProps) {
+  const { products } = await getAllProducts(searchParams?.name)
 
   return (
     <>
