@@ -23,3 +23,4 @@ export * from './sessions/Footer'
 
 // others
 export * from './CategoryIcon'
+export * from './AddedProduct'
