@@ -12,13 +12,18 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ productData }: ProductCardProps) {
-  const { addItem } = basketStore()
+  const { addItem, setTotal } = basketStore()
 
   const data: IBasketItem = {
     id: productData._id,
     name: productData.name,
     amount: 1,
     price: productData.price,
+  }
+
+  function handleAddItemToBasket() {
+    addItem(data)
+    setTotal()
   }
 
   return (
@@ -41,7 +46,7 @@ export function ProductCard({ productData }: ProductCardProps) {
           <Button
             text="Adicionar"
             type='button'
-            onClick={() => addItem(data)}
+            onClick={handleAddItemToBasket}
             small
           />
         </div>

@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { IBasketItem } from '@/dataTypes/basket.dto'
-import { fakeProductsOnBasket } from './fakeData'
 
 interface BasketProps {
   basketContent: IBasketItem[] | null
@@ -15,7 +14,7 @@ interface BasketProps {
 }
 
 const initialState = {
-  basketContent: fakeProductsOnBasket,
+  basketContent: null,
   basketTotal: 0
 }
 
