@@ -18,7 +18,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="mt-36 px-28 max-w-7xl mx-auto">
       <div className='flex gap-2 items-center'>
         <Image src={backIcon} alt='ícone de uma seta para a esquerda' />
-        <CustomLink href='/' text='Voltar' />
+        <CustomLink href='/produtos' text='Voltar' />
       </div>
 
       <main className='mt-8 flex justify-between gap-24'>

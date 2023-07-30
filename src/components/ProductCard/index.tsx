@@ -30,7 +30,7 @@ export function ProductCard({ productData }: ProductCardProps) {
     <div
       className='h-auto border-2 border-white hover:border-gray-200 transition rounded p-4'
     >
-      <Link href={`/produtos/${productData.slug}`} className='flex'>
+      <Link href={`/detalhes/${productData.slug}`} className='flex'>
         <Image className='h-full w-auto' src={productData.image} width={1000} height={1000} alt={`foto do produto ${productData.name}`} />
       </Link>
 
