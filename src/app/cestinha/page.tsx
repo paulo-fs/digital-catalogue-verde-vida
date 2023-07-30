@@ -31,7 +31,7 @@ export default function Cestinha() {
       <div className='flex flex-col gap-2 max-w-xl items-center justify-center mx-auto mt-10'>
         {(!basketContent || basketContent.length === 0) && (
           <div className='h-44 flex items-center text-gray-700 text-h4'>
-            Você ainda não adicionou itens à sua cestinha.
+            Sua cestinha está vazia =[
           </div>
         )}
         {basketContent && basketContent.map((product) => {
