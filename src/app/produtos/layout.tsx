@@ -1,4 +1,4 @@
-import { TogleInputs } from '@/components'
+import { Header, TogleInputs } from '@/components'
 import { getAllCategories } from '@/services/requests'
 import { ReactNode } from 'react'
 
@@ -10,14 +10,17 @@ export default async function ProductsLayout({children}: ProductsLayoutProps) {
   const { categories } = await getAllCategories()
 
   return (
-    <div className="mt-36 px-28 text-center">
-      <TogleInputs
-        categories={categories}
-      />
+    <>
+      <Header />
+      <div className="mt-36 px-28 text-center">
+        <TogleInputs
+          categories={categories}
+        />
 
-      <div className='mt-14 inline-grid grid-cols-4 gap-8'>
-        {children}
+        <div className='mt-14 inline-grid grid-cols-4 gap-8'>
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

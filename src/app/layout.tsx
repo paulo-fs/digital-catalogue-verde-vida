@@ -1,5 +1,5 @@
 import { Montserrat, Be_Vietnam_Pro } from 'next/font/google'
-import { Footer, Header } from '@/components'
+import { Footer } from '@/components'
 import './globals.css'
 
 
@@ -19,8 +19,9 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body className={`${beVietnam.className} ${montserrat.className}`}>
-        <Header />
-        {children}
+        <main className='max-w-7xl mx-auto'>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
