@@ -28,7 +28,6 @@ export default function Cestinha() {
         Minha cestinha
       </h1>
 
-<<<<<<< HEAD
       <div className='flex flex-col max-w-2xl mx-auto'>
         <div className='flex flex-col w-full gap-2 mx-auto mt-10'>
           {(!basketContent || basketContent.length === 0) && (
@@ -55,31 +54,6 @@ export default function Cestinha() {
             <span className='font-title text-b1 text-green-500'>R${formatPrice(basketTotal)}</span>
           </div>
           <Button text='Enviar pedido' disabled={isDisabled} />
-=======
-      <div className='flex flex-col gap-2 max-w-xl items-center justify-center mx-auto mt-10'>
-        {(!basketContent || basketContent.length === 0) && (
-          <div className='h-44 flex items-center text-gray-700 text-h4'>
-            Sua cestinha está vazia =[
-          </div>
-        )}
-        {basketContent && basketContent.map((product) => {
-          return (
-            <AddedProduct
-              key={product.id}
-              productData={product}
-              increaseAmount={increaseAmount}
-              decreaseAmount={decreaseAmount}
-              removeItem={removeItem}
-            />
-          )
-        })}
-      </div>
-
-      <div className='flex gap-8 items-center justify-end mt-14'>
-        <div>
-          <span className='text-b3 text-gray-700 mr-3'>Total:</span>
-          <span className='font-title text-b1 text-green-500'>R${formatPrice(basketTotal)}</span>
->>>>>>> 135210a917b268a559768f1dc149f7e7412a6e7c
         </div>
       </div>
     </div>
