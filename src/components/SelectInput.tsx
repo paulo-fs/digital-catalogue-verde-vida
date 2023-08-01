@@ -29,7 +29,7 @@ export function SelectInput({ icon, categories }: InputProps) {
 
   return(
     <label
-      className="h-14 w-96 max-w-md px-2 rounded-full border-2 border-gray-200 flex items-center relative"
+      className="h-14 w-full max-w-md px-2 rounded-full border-2 border-gray-200 flex items-center relative"
     >
       <DropDown.Root>
         <DropDown.Trigger asChild className='w-full'>
@@ -37,7 +37,6 @@ export function SelectInput({ icon, categories }: InputProps) {
             className="h-full w-full px-6 flex items-center justify-between text-gray-700"
           >
             {selectedCategory ? selectedCategory : 'Selecione uma categoria'}
-            {/* Selecione uma categoria */}
             { icon && (
               <Image src={iconSelect[icon]} alt='ícone de uma seta para baixo'
                 className=''
@@ -50,7 +49,7 @@ export function SelectInput({ icon, categories }: InputProps) {
           <DropDown.Content
             align='center'
             sideOffset={5}
-            className='bg-white max-w-md w-80 rounded-md border-2 border-gray-200 shadow-lg shadow-gray-100'
+            className='bg-white w-[400px] rounded-md border-2 border-gray-200 shadow-lg'
           >
 
             <DropDown.Group className='flex flex-col'>

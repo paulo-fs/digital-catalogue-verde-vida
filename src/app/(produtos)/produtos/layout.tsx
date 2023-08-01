@@ -12,12 +12,12 @@ export default async function ProductsLayout({children}: ProductsLayoutProps) {
   return (
     <>
       <Header />
-      <div className="mt-36 px-28 text-center">
+      <div className="mt-36 px-6 md:px-12 text-center">
         <TogleInputs
           categories={categories}
         />
 
-        <div className='mt-14 inline-grid grid-cols-4 gap-8'>
+        <div className='mt-14 inline-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8'>
           {children}
         </div>
       </div>

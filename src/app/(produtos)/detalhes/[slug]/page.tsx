@@ -15,16 +15,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const {product} = await getProductBySlug(slug)
 
   return (
-    <div className="mt-36 px-28 max-w-7xl mx-auto">
+    <div className="mt-36 max-w-7xl mx-auto">
       <div className='flex gap-2 items-center'>
         <Image src={backIcon} alt='ícone de uma seta para a esquerda' />
         <CustomLink href='/produtos' text='Voltar' />
       </div>
 
-      <main className='mt-8 flex justify-between gap-24'>
-        <div className='max-w-2xl flex flex-col gap-6 flex-1'>
+      <div className='mt-8 flex flex-col-reverse md:flex-row justify-between gap-4 md:gap-10 lg:gap-24'>
+        <div className='w-full md:w-7/12 max-w-2xl flex flex-col gap-6'>
           <div>
-            <h1 className='font-title font-bold text-h2 capitalize'>
+            <h1 className='font-title font-bold text-h3 lg:text-h2 capitalize'>
               {product.name}
             </h1>
             <p className='text-b3 text-green-500'>Linha NOME DA LINHA DO PRODUTO</p>
@@ -51,8 +51,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
 
-        <Image className='h-fit max-w-md flex-1' src={product.image} width={1000} height={1000} alt={`foto do produto ${product.name}`} />
-      </main>
+        <div className='flex w-full md:w-5/12 max-w-md h-fix sm:w-auto flex-1 mx-auto'>
+          <Image className='h-fit' src={product.image} width={1000} height={1000} alt={`foto do produto ${product.name}`} />
+        </div>
+      </div>
     </div>
   )
 }

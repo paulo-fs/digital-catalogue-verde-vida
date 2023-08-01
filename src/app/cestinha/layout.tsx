@@ -1,11 +1,11 @@
 import { Header } from '@/components'
 import { ReactNode } from 'react'
 
-interface ProductDetailLayoutProps {
+interface BasketLayoutProps {
   children: ReactNode
 }
 
-export default async function ProductDetailLayout({children}: ProductDetailLayoutProps) {
+export default async function BasketLayout({children}: BasketLayoutProps) {
   return (
     <>
       <Header />

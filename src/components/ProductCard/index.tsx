@@ -28,19 +28,19 @@ export function ProductCard({ productData }: ProductCardProps) {
 
   return (
     <div
-      className='h-auto border-2 border-white hover:border-gray-200 transition rounded p-4'
+      className='h-auto border-2 border-white hover:border-gray-200 transition rounded p-0 sm:p-4 flex sm:flex-col items-center gap-2 sm:gap-4'
     >
-      <Link href={`/detalhes/${productData.slug}`} className='flex'>
+      <Link href={`/detalhes/${productData.slug}`} className='flex w-5/12 h-max sm:w-auto'>
         <Image className='h-full w-auto' src={productData.image} width={1000} height={1000} alt={`foto do produto ${productData.name}`} />
       </Link>
 
-      <div className='flex flex-col gap-2 justify-center'>
-        <h4 className='text-gray-800 capitalize'>
+      <div className='w-7/12 sm:w-full text-left sm:text-center flex flex-col gap-2 justify-center'>
+        <h4 className='text-gray-800 capitalize text-b2 sm:text-b3'>
           {productData.name}
         </h4>
 
-        <div className='flex transition items-center justify-center gap-6'>
-          <span className='text-green-500 text-b3'>
+        <div className='flex flex-row-reverse flex-wrap sm:flex-col lg:flex-row transition items-center justify-end sm:justify-center gap-2 lg:gap-6'>
+          <span className='text-green-500 text-b2 sm:text-b3'>
             R${formatPrice(productData.price)}
           </span>
           <Button

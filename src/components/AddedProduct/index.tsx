@@ -16,23 +16,25 @@ export function AddedProduct({productData, increaseAmount, decreaseAmount, remov
 
   return (
     <div
-      className="w-full h-fit flex items-center justify-between gap-6 text-gray-800"
+      className="w-full h-fit flex items-center justify-between gap-3 sm:gap-6 text-gray-800"
     >
-      <div className="w-full h-full bg-gray-100 rounded px-8 py-6 flex items-center justify-between">
+      <div className="w-full h-full bg-gray-100 rounded px-3 sm:px-8 py-3 sm:py-6 flex flex-col sm:flex-row sm:items-center justify-between">
         <span className='text-b2 capitalize'>
           {productData.name}
         </span>
 
-        <div className='flex items-center gap-6'>
+        <div className='flex flex-wrap items-center gap-4 sm:gap-6'>
           <span>
             R${formatPrice(productData.price)}
           </span>
-          <span className='text-gray-700'>x</span>
           <div className='flex items-center gap-3'>
-            <span>{productData.amount}</span>
-            <div className='flex flex-col gap-1'>
-              <RoundedButton text='+' onClick={() => increaseAmount(productData.id)} />
-              <RoundedButton text='-' onClick={() => decreaseAmount(productData.id)} />
+            <span className='text-gray-700'>x</span>
+            <div className='flex items-center gap-3'>
+              <span>{productData.amount}</span>
+              <div className='flex sm:flex-col gap-1'>
+                <RoundedButton text='+' onClick={() => increaseAmount(productData.id)} />
+                <RoundedButton text='-' onClick={() => decreaseAmount(productData.id)} />
+              </div>
             </div>
           </div>
         </div>
