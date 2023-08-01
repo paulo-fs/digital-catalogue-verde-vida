@@ -19,6 +19,10 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body className={`${beVietnam.className} ${montserrat.className}`}>
+<<<<<<< HEAD
+=======
+        <Header />
+>>>>>>> 135210a917b268a559768f1dc149f7e7412a6e7c
         <main className='max-w-7xl mx-auto'>
           {children}
         </main>
