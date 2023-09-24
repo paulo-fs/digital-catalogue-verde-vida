@@ -1,10 +1,7 @@
 import { Slug } from '@/helper/slugNormalizer'
-import database from '@/lib/database'
-import { categoryModel } from '@/models/category'
+import prisma from '@/lib/prisma'
 import { NextResponse, NextRequest } from 'next/server'
 import { z } from 'zod'
-
-database.connect()
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const body = await req.json()
@@ -22,7 +19,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 
   try {
-    const category = await categoryModel.findById(id)
+    const category = await prisma.category.findUnique({where: {id}})
     const newSlug = body.name ? Slug.createFromText(body.name).value : null
 
     if (!category) return NextResponse.json({ error: 'Category not found' }, { status: 404 })
@@ -31,10 +28,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     category.icon = body.icon || category.icon
     category.slug = newSlug || (category.slug)
 
-    const updatedCategory = await categoryModel.findByIdAndUpdate(id, category, {
-      new: true,
-      runValidators: true
-    })
+    const updatedCategory = await prisma.category.update({where: {id: category.id}, data: category})
 
     return NextResponse.json({category: updatedCategory})
   } catch (err) {
@@ -46,7 +40,7 @@ export async function DELETE(_req: Request, { params }: { params: { id: string }
   const { id } = params
 
   try {
-    await categoryModel.findByIdAndDelete(id)
+    await prisma.category.delete({where: {id}})
     return NextResponse.json({ message: 'Category deleted successfully' })
   } catch (err) {
     console.log(err)
@@ -58,7 +52,7 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
   const { id } = params
 
   try {
-    const category = await categoryModel.findById(id)
+    const category = await prisma.category.findUnique({where: {id}})
     return NextResponse.json({category})
   } catch (err) {
     console.log(err)
