@@ -1,21 +1,18 @@
-import database from '@/lib/database'
-import {productModel} from '@/models/product'
 import { NextResponse, NextRequest } from 'next/server'
 import mime from 'mime'
 import { join } from 'path'
 import { stat, mkdir, writeFile } from 'fs/promises'
 import { Slug } from '@/helper/slugNormalizer'
 import url from 'url'
-
-database.connect()
+import prisma from '@/lib/prisma'
 
 export async function GET(req: NextRequest) {
   const queryParams = url.parse(req.url, true).query
   const { name } = queryParams
 
   try {
-    let products = await productModel.find({}).populate('category').exec()
-    if (name) products = products.filter((product: any) => product.name.toLowerCase().includes(name))
+    const productName = name?.toString()
+    const products = await prisma.product.findFirst({where: {name: productName}, include: {category: true}})
     return NextResponse.json({products})
   } catch (err) {
     console.log(err)
@@ -48,8 +45,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const found = await productModel.find({ name: name })
-    if (found.length !== 0) return NextResponse.json({ error: 'Product already exists' }, { status: 400 })
+    const found = await prisma.product.findFirst({ where: {name} })
+    if (found) return NextResponse.json({ error: 'Product already exists' }, { status: 400 })
   } catch (err) {
     console.log(err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
@@ -76,13 +73,13 @@ export async function POST(req: NextRequest) {
     await writeFile(`${uploadDir}/${filename}`, buffer)
     const fileUrl = `${relativeUploadDir}/${filename}`
 
-    const newProduct = await productModel.create({
+    const newProduct = await prisma.product.create({data: {
       name: name,
       slug: productSlug,
       price: price,
       image: fileUrl,
-      category: category,
-    })
+      category_id: category,
+    }})
     return NextResponse.json({ product: newProduct })
   } catch (err) {
     console.log(err)

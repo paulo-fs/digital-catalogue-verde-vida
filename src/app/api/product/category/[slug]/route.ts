@@ -1,9 +1,6 @@
-import database from '@/lib/database'
-import { productModel } from '@/models/product'
+import prisma from '@/lib/prisma'
 import { NextResponse, NextRequest } from 'next/server'
 import url from 'url'
-
-database.connect()
 
 export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
   const { slug } = params
@@ -11,10 +8,8 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
   const { name } = queryParams
 
   try {
-    const products = await productModel.find().populate('category').exec()
-    let filteredProducts = products.filter((product: any) => product.category.slug === slug)
-    if (name) filteredProducts = products.filter((product: any) => product.name.toLowerCase().includes(name))
-    return NextResponse.json({ products: filteredProducts })
+    const foundProducts = name ? await prisma.product.findMany({where: {name: name as string, category: {slug}}, include: {category: true}}) : []
+    return NextResponse.json({ products: foundProducts })
   } catch (err) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 })
   }

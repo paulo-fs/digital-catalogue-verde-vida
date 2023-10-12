@@ -1,15 +1,11 @@
-import database from '@/lib/database'
-import { categoryModel } from '@/models/category'
-import { productModel } from '@/models/product'
+import prisma from '@/lib/prisma'
 import { NextResponse, NextRequest } from 'next/server'
-
-database.connect()
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const { id } = params
 
   try {
-    const product = await productModel.findById(id).populate('category').exec()
+    const product = await prisma.product.findUnique({where: {id}, include: {category: true}})
     return NextResponse.json({ product })
   } catch (err) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 })
@@ -38,7 +34,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
   if (category) {
     try {
-      const found = await categoryModel.findById(category)
+      const found = await prisma.category.findUnique({where: { id: category }})
       if (!found) return NextResponse.json({ error: 'Category not found'}, { status: 404 })
     } catch (err) {
       console.log(err)
@@ -50,6 +46,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     name,
     price,
     category,
+    // TODO: implement image upload and delete the previous one.
     image: image ? Buffer.from(await image.arrayBuffer()).toString('base64url') : null,
     imageType
   }
@@ -60,7 +57,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
 
   try {
-    const product = await productModel.findById(id)
+    const product = await prisma.product.findUnique({ where: { id }})
     if (!product) return NextResponse.json({ error: 'Product not found' }, { status: 404 })
 
     const updatedProduct = await productModel.findByIdAndUpdate(id, cleanUpdateData, {
